@@ -21,7 +21,7 @@
 title: Begal
 email: calvin.kawai.li@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Welcome to my blog.
+  Hi, my name is Calvin, a software developer and moment capurter!! Enjoy my world!!
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  calvinkawai
@@ -38,6 +38,10 @@ defaults:
       path: "assets"
     values:
       image: true
+
+header_pages:
+  - header/photography.html
+  - header/programming.html
 
 # Exclude from processing.
 # The following items will not be processed, by default.

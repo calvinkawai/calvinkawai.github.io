@@ -1,6 +1,8 @@
 ---
 layout: post
-title:  "TBC"
+title:  "Create a blog with minima and customization"
 date:   2021-07-16 14:17:06 -0400
 categories: programming
 ---
+
+I have explored a lot blogging platforms like wordpress.com/org, Wix, and sqareone since university.

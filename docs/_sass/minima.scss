@@ -3,9 +3,9 @@
 // Define defaults for each variable.
 
 $base-font-family: "Cormorant Garamond";
-$base-font-size:   18px !default;
+$base-font-size:   20px !default;
 $base-font-weight: 400 !default;
-$small-font-size:  $base-font-size * 0.875 !default;
+$small-font-size:  $base-font-size * 0.9 !default;
 $base-line-height: 1.5 !default;
 
 $spacing-unit:     30px !default;
@@ -33,6 +33,14 @@ $on-laptop:        800px !default;
 //     padding-left: $spacing-unit / 2;
 //   }
 // }
+
+// personal style
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
 @mixin media-query($device) {
   @media screen and (max-width: $device) {
     @content;
