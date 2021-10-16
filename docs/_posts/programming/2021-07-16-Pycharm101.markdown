@@ -1,8 +1,39 @@
 ---
 layout: post
-title:  "Create a blog with minima and customization"
+title:  "📓 Create a blog with Jekyll"
 date:   2021-07-16 14:17:06 -0400
 categories: programming
 ---
 
-I have explored a lot blogging platforms like wordpress.com/org, Wix, and sqareone since university.
+I have explored different blogging platforms like wordpress.com/org, Wix, and Squarespace since university. My goal of blogging started with in course assignment to a photography portfolio website. And now I want a mix of these places where I can share software development learning progress and a small gallery of candid moments.
+
+---
+
+Here are why I chose Jekyll
+  - Easy to start a blog and host on Github page
+  - Minima theme is simple and clean, and provide enough room to customize the css
+  - Markdown language makes the writing process more enjoyable
+  - Plus you don't have understand ruby/gem/liquid well to start blogging
+
+---
+
+# **Requirements**
+
+- Text editor (Atom)
+- Terminal (iTerm)
+
+---
+
+# **Download dependencies**
+
+---
+
+# **Start the blog**
+
+---
+
+# **Host on Github**
+
+---
+
+# **Customize**
