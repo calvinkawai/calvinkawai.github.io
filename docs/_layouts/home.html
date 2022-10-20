@@ -1,14 +1,44 @@
 ---
 layout: default
 ---
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 10px;
+    padding: 10px;
+  }
+  dt {
+    margin-top: 10px;
+  }
+</style>
 
 <div class="home">
-  <img src="assets/selfie.jpg" style="width:100%">
-  <p>
-    My name is Calvin and currently working as Software Developer at Loknow base in Edmonton. I graudated from Univertsity of Toronto 
-    in 2018 with Computer Science degree, and work at RBC as Quality Engineer for 3 years before moving to Edmonton.
-
-    This blog is to showcase my learning experience and my work.
-  </p>
-
+  <div class="grid-container">
+    <img src="assets/selfie.png" style="width:150px;height: 150px;">
+    <div class="about-me" style="margin: 5% auto;">
+      <dl>
+        <dt>Living in Edmonton and work at LoKnow as Software Developer.</dt>
+        <dt>Competing recreation level tennis in Canada.</dt>
+        <dt>Recording daily life/travel/people with fujifilm x100v.</dt>
+      </dl>
+    </div>
+  </div>
+  <hr>
+  <br/>
+  <dl>
+    <dt>I have most my professional experiences on Web Development, more specific with python using django framework as backend vue.js for frontend. 
+      Still exploring aws, docker, and different databases. Interested in Ad industry tech and game development. 
+      I am currently digging into C++ and game development using Godot, towards to my game development dream.
+    </dt>
+    <dt>
+      This blog is to share and showcase what I have learned and done. Including:
+    </dt>
+    <dd>- CS related project, tutorial, thoughts</dd>
+    <dd>- Photography project/geer</dd>
+    <dd>- random thoughts</dd>
+    <dt>
+      <b> The world is an aritist while I'm mere a witness, I wish to record with my heart and share my journey with you. Hope you will enjoy! </b>
+    </dt>
+  </dl>
 </div>

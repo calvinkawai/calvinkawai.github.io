@@ -1,6 +1,6 @@
 ---
-layout: post
-title: "📷 Snaps"
+layout: default
+title: "Snaps"
 categories: photography
 ---
 <!-- Slideshow container -->
