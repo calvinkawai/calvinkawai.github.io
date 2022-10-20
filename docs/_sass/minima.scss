@@ -2,8 +2,8 @@
 
 // Define defaults for each variable.
 
-$base-font-family: "Cormorant Garamond";
-$base-font-size:   20px !default;
+$base-font-family: "Montserrat";
+$base-font-size:   16px !default;
 $base-font-weight: 400 !default;
 $small-font-size:  $base-font-size * 0.9 !default;
 $base-line-height: 1.5 !default;
@@ -21,10 +21,10 @@ $grey-color-dark:  darken($grey-color, 25%) !default;
 $table-text-align: left !default;
 
 // Width of the content area
-$content-width:    800px !default;
+$content-width:    700px !default;
 
 $on-palm:          600px !default;
-$on-laptop:        800px !default;
+$on-laptop:        700px !default;
 
 // Use media queries like this:
 // @include media-query($on-palm) {
@@ -49,5 +49,5 @@ $on-laptop:        800px !default;
   "minima/base",
   "minima/layout",
   "minima/syntax-highlighting",
-  "https://fonts.googleapis.com/css?family=Cormorant Garamond"
+  "https://fonts.googleapis.com/css?family=Montserrat"
 ;

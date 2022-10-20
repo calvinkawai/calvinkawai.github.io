@@ -6,6 +6,7 @@
     {% if myimage.path contains include.folder_name %}
     <div class="mySlides fade">
         <img src="{{ myimage.path }}" style="width:100%">
+        <p style="text-align: center;"> {{ myimage.name | remove: ".jpg" }} </p>
     </div>
     {% endif %}
     {% endfor %}

@@ -6,7 +6,7 @@
 
 pre, code {
     font-family: $base-font-family;
-    font-size: 18.75px;
+    font-size: 14px;
     border: 1px solid #e8e8e8;
     border-radius: 3px;
     background-color: #f7f7f7;
@@ -26,8 +26,4 @@ hr {
     border: 0;
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-}
-
-ul li::marker {
-  color: #04a0de;
 }

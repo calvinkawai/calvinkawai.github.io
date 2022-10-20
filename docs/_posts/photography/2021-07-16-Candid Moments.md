@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "📷 Candid Moment"
+title: "📷 Snaps"
 categories: photography
 ---
 <!-- Slideshow container -->
