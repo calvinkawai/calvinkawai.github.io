@@ -21,30 +21,30 @@
 title: Calvin Li
 email: calvin.kawai.li@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Hi, my name is Calvin, a software developer in Edmonton, welcome to my world!
+    Hi, my name is Calvin, a software developer in Edmonton, welcome to my world!
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 markdown: kramdown
 highlighter: rouge
-github_username:  calvinkawai
-instagram_username:  calvinll.ll
+github_username: calvinkawai
+google_analytics: G-M344DFXTEL
+instagram_username: calvinll.ll
 
 # Build settings
 theme: minima
 plugins:
-  - jekyll-feed
-  - jemoji
+    - jekyll-feed
+    - jemoji
 
 defaults:
-  - scope:
-      path: "assets"
-    values:
-      image: true
+    - scope:
+          path: "assets"
+      values:
+          image: true
 
 header_pages:
-  - header/photography.html
-  - header/programming.html
-
+    - header/photography.html
+    - header/programming.html
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
