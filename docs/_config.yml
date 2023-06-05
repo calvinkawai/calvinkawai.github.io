@@ -27,8 +27,9 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 markdown: kramdown
 highlighter: rouge
 github_username: calvinkawai
-google_analytics: G-M344DFXTEL
 instagram_username: calvinll.ll
+show_excerpts: true
+google_analytics: G-M344DFXTEL
 
 # Build settings
 theme: minima

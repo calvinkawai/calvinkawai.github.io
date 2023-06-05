@@ -1,6 +1,6 @@
 ---
-layout: post
-title: "📷 Vancouver Vol.1"
+layout: default
+title: "Vancouver Vol.1"
 categories: photography
 ---
 <!-- Slideshow container -->
