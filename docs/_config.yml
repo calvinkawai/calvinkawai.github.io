@@ -32,10 +32,11 @@ show_excerpts: true
 google_analytics: G-M344DFXTEL
 
 # Build settings
-theme: minima
+remote_theme: jekyll/minima
 plugins:
     - jekyll-feed
     - jemoji
+    - jekyll-remote-theme
 
 defaults:
     - scope:
