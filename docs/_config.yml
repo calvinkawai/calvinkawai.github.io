@@ -29,14 +29,12 @@ highlighter: rouge
 github_username: calvinkawai
 instagram_username: calvinll.ll
 show_excerpts: true
-google_analytics: G-M344DFXTEL
 
 # Build settings
-remote_theme: jekyll/minima
+theme: minima
 plugins:
     - jekyll-feed
     - jemoji
-    - jekyll-remote-theme
 
 defaults:
     - scope:
