@@ -254,3 +254,25 @@
       }
     }
   }
+
+  .index-box {
+    border: 1px solid black;
+    width: 100px;
+    padding: 15px;
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    table {
+      display: block;
+    }
+    tr {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    td {
+      flex-basis: 50%;
+      box-sizing: border-box;
+      padding: 5px;
+    }
+  }
