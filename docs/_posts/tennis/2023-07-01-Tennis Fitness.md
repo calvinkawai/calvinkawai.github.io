@@ -5,10 +5,10 @@ date:   2023-07-25
 categories: tennis
 ---
 
-1. Core, start with core and end with core
-2. Single Leg
-3. Dynamic balance
-4. Speed drill before fatigue
+> 1. Core, start with core and end with core
+> 2. Single Leg
+> 3. Dynamic balance
+> 4. Speed drill before fatigue
 
 ## Weight-lifting
 

@@ -5,7 +5,7 @@ date:   2023-07-25
 categories: tennis
 ---
 
-**As a general rule before a tennis match, you should eat meals that contain <mark>lean protein</mark> and are high in <mark>simple carbohydrates</mark>, as those are easily digested and will give you energy for the match. You should stay away from foods with a lot of fat and that are hard to digest, as those will slow down your metabolism and make you feel sluggish.**
+> **As a general rule before a tennis match, you should eat meals that contain <mark>lean protein</mark> and are high in <mark>simple carbohydrates</mark>, as those are easily digested and will give you energy for the match. You should stay away from foods with a lot of fat and that are hard to digest, as those will slow down your metabolism and make you feel sluggish.**
 
 ![Food](https://mytennishq.com/wp-content/uploads/2019/12/what-to-eat-before-a-tennis-match.avif)
 
