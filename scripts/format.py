@@ -7,6 +7,9 @@ from full_yaml_metadata import makeExtension
 
 index_template = "templates/index.html"
 blog_template = "templates/blog.html"
+homepage_template = '<nav><a href="{path}"><span class="material-symbols-outlined md-36 green">home</span></a></nav>'
+style_link = '<link href="{path}" rel="stylesheet"></link>'
+
 index_section = {
     "about": "index/about.md",
     "passionate": "index/passionate.md",
@@ -18,7 +21,6 @@ blog_dir = "blogs/"
 seeds_dir = "seed/"
 
 extension = "html"
-
 
 makeExtension()
 
@@ -78,6 +80,8 @@ def format_awesome(template):
             content = md.convert(raw)
             template = template.replace("{{title}}", "awesome")
             template = template.replace("{{body}}", content)
+            template = template.replace("{{home}}", homepage_template.format(path="index.html"))
+            template = template.replace("{{style_link}}", style_link.format(path="retro.css"))
         out.write(template)
 
 
@@ -90,6 +94,8 @@ def format_blog(template, blog_file):
             content = md.convert(raw)
             template = template.replace("{{title}}", md.Meta.get("title"))
             template = template.replace("{{body}}", content)
+            template = template.replace("{{home}}", homepage_template.format(path="../index.html"))
+            template = template.replace("{{style_link}}", style_link.format(path="../retro.css"))
         out.write(template)
     return md.Meta.get("created"), md.Meta.get("title")
 
