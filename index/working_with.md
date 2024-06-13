@@ -1,0 +1,4 @@
+- Python
+- Django
+- Vue.js
+- AWS
