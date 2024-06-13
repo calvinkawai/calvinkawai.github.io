@@ -208,7 +208,7 @@ blockquote {
     gap: 1rem;
 }
 
-@media (width <= 900px) {
+@media (width >= 900px) {
     .wrapper {
         grid-template-columns: repeat(3, 1fr);
     }
