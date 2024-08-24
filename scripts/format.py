@@ -63,7 +63,7 @@ def format_index(blog_list):
         # blog section list
         blog_list_content = ""
         for blog in blog_list:
-            blog_list_content += "<p>{created} <a href='blogs/{created}.html'>{title}</a></p>".format(
+            blog_list_content += "<p>{created} <a href='blogs/{title}.html'>{title}</a></p>".format(
                 created=blog[0], title=blog[1]
             )
 
@@ -86,17 +86,16 @@ def format_awesome(template):
 
 
 def format_blog(template, blog_file):
-    file_name = os.path.splitext(blog_file)[0]
-    with open(output_path(file_name), "w") as out:
-        with open(blog_file, "r") as input:
-            raw = input.read()
-            md = md_parser()
-            content = md.convert(raw)
-            template = template.replace("{{title}}", md.Meta.get("title"))
-            template = template.replace("{{body}}", content)
-            template = template.replace("{{home}}", homepage_template.format(path="../index.html"))
-            template = template.replace("{{style_link}}", style_link.format(path="../retro.css"))
-        out.write(template)
+    with open(blog_file, "r") as input:
+        raw = input.read()
+        md = md_parser()
+        content = md.convert(raw)
+        template = template.replace("{{title}}", md.Meta.get("title"))
+        template = template.replace("{{body}}", content)
+        template = template.replace("{{home}}", homepage_template.format(path="../index.html"))
+        template = template.replace("{{style_link}}", style_link.format(path="../retro.css"))
+        with open(output_path(f"blogs/{md.Meta.get("title")}"), "w") as out:
+            out.write(template)
     return md.Meta.get("created"), md.Meta.get("title")
 
 
