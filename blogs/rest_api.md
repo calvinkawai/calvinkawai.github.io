@@ -11,8 +11,10 @@ title: how to design an restful api
 
 ### Terminology
 
-**API** is a set of rules or protocols that enable softwares application to communicate with each other to exchange data
+**API** is a set of rules or protocols that enable softwares application to communicate with each other to exchange data.
+
 **REST** is a software architectural pattern that defines a set of constrains.
+
 **RESTful API** delivers information of in one of following format, HTML, Json, PHP, Plain Text via http request.
 
 ### Constrains
