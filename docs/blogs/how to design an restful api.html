@@ -1,4 +1,8 @@
 <!doctype html>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+/>
 <link href="../retro.css" rel="stylesheet"></link>
 <link
     rel="stylesheet"
@@ -7,39 +11,40 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>RESTful API</title>
+        <title>how to design an restful api</title>
     </head>
     <body>
-        <nav><a href="../index.html"><span class="material-symbols-outlined md-36 green">home</span></a></nav>
-        <h1 class="title">RESTful API</>
-        <h1>Definition</h1>
-<p><strong>REST</strong> is a software architectural pattern that defines a set of constrains.
+        <nav><a href="../index.html" class="home">Home</a></nav>
+        <h1 class="title">how to design an restful api</h1>
+        <h3>Terminology</h3>
+<p><strong>API</strong> is a set of rules or protocols that enable softwares application to communicate with each other to exchange data
+<strong>REST</strong> is a software architectural pattern that defines a set of constrains.
 <strong>RESTful API</strong> delivers information of in one of following format, HTML, Json, PHP, Plain Text via http request.</p>
-<h1>Constrains</h1>
-<h2>A Client-Server Architecture</h2>
+<h3>Constrains</h3>
+<p>A Client-Server Architecture</p>
 <ul>
 <li>client requests resources from server via http</li>
 </ul>
-<h2>Statelessness</h2>
+<p>Statelessness</p>
 <ul>
 <li>each request is independent</li>
 </ul>
-<h2>Cacheable</h2>
+<p>Cacheable</p>
 <ul>
 <li>data requested from server side can be stored in client, cdn etc</li>
 </ul>
-<h2>A Uniform Interface</h2>
+<p>A Uniform Interface</p>
 <ul>
 <li>resources requested group by identity (URI)</li>
 <li>resources can be manipulated via representation they receive</li>
 <li>self-descriptive messages returned to client should have enough information to describe how client should process it</li>
 <li>hypertext/hypermedia is available, client can find related actions after accessing a resource</li>
 </ul>
-<h2>A layered System</h2>
+<p>A layered System</p>
 <ul>
 <li>client does not need to know how server works for those responsible to authorization, load-balancing etc.</li>
 </ul>
-<h1>Best practise for scenarios</h1>
+<h3>Examples</h3>
 <p><strong>Retriever Blog by id</strong></p>
 <ul>
 <li><strong>URL Pattern</strong>: <code>GET /blogs/{blogId}</code></li>
@@ -68,9 +73,10 @@
 <hr />
 <p>Reference:</p>
 <ol>
-<li><a href="https://github.com/PragatiVerma18/Django-For-APIs/blob/master/Best-Practices-In-REST.md">Rest api best practice</a></li>
-<li><a href="https://blog.bytebytego.com/p/why-is-restful-api-so-popular">Why is restful api so popular</a></li>
+<li><a href="https://github.com/PragatiVerma18/Django-For-APIs/blob/master/Best-Practices-In-REST.md">Rest API best practice</a></li>
+<li><a href="https://blog.bytebytego.com/p/why-is-restful-api-so-popular">Bytebytego - Why is restful api so popular</a></li>
 <li><a href="https://www.youtube.com/watch?v=L_UWY-zHlOA&amp;ab_channel=DjangoConUS">Carson Gross - REST, HATEOAS &amp; Django - It's OK to not use JSON... or Javascript</a></li>
+<li><a href="https://htmx.org/essays/hateoas/">Carson Gross - HATEOAS</a></li>
 </ol>
     </body>
 </html>

@@ -3,11 +3,12 @@ import os
 import glob
 import markdown
 import yaml
+import datetime
 from full_yaml_metadata import makeExtension
 
 index_template = "templates/index.html"
 blog_template = "templates/blog.html"
-homepage_template = '<nav><a href="{path}"><span class="material-symbols-outlined md-36 green">home</span></a></nav>'
+homepage_template = '<nav><a href="{path}" class="home">Home</a></nav>'
 style_link = '<link href="{path}" rel="stylesheet"></link>'
 
 index_section = {
@@ -37,6 +38,9 @@ def md_parser():
     return md
 
 
+md = md_parser()
+
+
 def get_template(template_file):
     with open(template_file, "r") as index_fp:
         template = index_fp.read()
@@ -56,12 +60,12 @@ def format_index(blog_list):
         for section, item_file in index_section.items():
             with open(item_file, "r") as section_fp:
                 raw = section_fp.read()
-                md = md_parser()
                 content = md.convert(raw)
                 index_html = index_html.replace("{{" + section + "}}", content)
 
         # blog section list
         blog_list_content = ""
+        blog_list = sorted(blog_list, key=lambda x: x[0], reverse=True)
         for blog in blog_list:
             blog_list_content += "<p>{created} <a href='blogs/{title}.html'>{title}</a></p>".format(
                 created=blog[0], title=blog[1]
@@ -76,7 +80,6 @@ def format_awesome(template):
     with open(output_path("awesome"), "w") as out:
         with open(awesome_md, "r") as input:
             raw = input.read()
-            md = md_parser()
             content = md.convert(raw)
             template = template.replace("{{title}}", "awesome")
             template = template.replace("{{body}}", content)
@@ -88,7 +91,6 @@ def format_awesome(template):
 def format_blog(template, blog_file):
     with open(blog_file, "r") as input:
         raw = input.read()
-        md = md_parser()
         content = md.convert(raw)
         template = template.replace("{{title}}", md.Meta.get("title"))
         template = template.replace("{{body}}", content)
