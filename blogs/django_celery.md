@@ -6,7 +6,7 @@ tags:
   - "#backlog"
 links:
   - "[[020 CS]]"
-title: django celery
+title: Django Celery
 created: 2024-10-11
 ---
 

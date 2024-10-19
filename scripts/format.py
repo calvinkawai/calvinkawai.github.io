@@ -56,36 +56,38 @@ def format_index(blog_list):
 
     with open(output_path("index"), "w") as out:
 
-        # about me
-        for section, item_file in index_section.items():
-            with open(item_file, "r") as section_fp:
-                raw = section_fp.read()
-                content = md.convert(raw)
-                index_html = index_html.replace("{{" + section + "}}", content)
-
         # blog section list
         blog_list_content = ""
         blog_list = sorted(blog_list, key=lambda x: x[0], reverse=True)
         for blog in blog_list:
-            blog_list_content += "<p>{created} <a href='blogs/{title}.html'>{title}</a></p>".format(
-                created=blog[0], title=blog[1]
-            )
+            blog_list_content += "<p><a href='blogs/{title}.html'>{title}</a></p>".format(title=blog[1])
 
-        index_html = index_html.replace("{{blogs}}", blog_list_content)
+        index_html = index_html.replace("{{body}}", blog_list_content)
+
+        out.write(index_html)
+
+    index_html = get_template(index_template)
+    with open(output_path("about"), "w") as out:
+        # about me
+        about_me_md = index_section["about"]
+        with open(about_me_md, "r") as section_fp:
+            raw = section_fp.read()
+            content = md.convert(raw)
+            index_html = index_html.replace("{{body}}", content)
 
         out.write(index_html)
 
 
-def format_awesome(template):
-    with open(output_path("awesome"), "w") as out:
-        with open(awesome_md, "r") as input:
-            raw = input.read()
-            content = md.convert(raw)
-            template = template.replace("{{title}}", "awesome")
-            template = template.replace("{{body}}", content)
-            template = template.replace("{{home}}", homepage_template.format(path="index.html"))
-            template = template.replace("{{style_link}}", style_link.format(path="retro.css"))
-        out.write(template)
+# def format_awesome(template):
+#     with open(output_path("awesome"), "w") as out:
+#         with open(awesome_md, "r") as input:
+#             raw = input.read()
+#             content = md.convert(raw)
+#             template = template.replace("{{title}}", "awesome")
+#             template = template.replace("{{body}}", content)
+#             template = template.replace("{{home}}", homepage_template.format(path="index.html"))
+#             template = template.replace("{{style_link}}", style_link.format(path="retro.css"))
+#         out.write(template)
 
 
 def format_blog(template, blog_file):
@@ -112,4 +114,4 @@ if __name__ == "__main__":
         blog_list.append(format_blog(blog_template, f))
 
     format_index(blog_list)
-    format_awesome(blog_template)
+    # format_awesome(blog_template)

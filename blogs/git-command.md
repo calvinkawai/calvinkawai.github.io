@@ -3,7 +3,7 @@ tags:
   - sde-tools
 links:
   - "[[020 CS]]"
-title: useful git command
+title: Git Commands
 created: 2024-08-24
 ---
 

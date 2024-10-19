@@ -5,7 +5,7 @@ tags:
   - backend
 links:
   - "[[020 CS]]"
-title: usage of Django apps in scale
+title: Django Apps
 created: 2024-10-11
 ---
 
