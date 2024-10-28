@@ -8,7 +8,7 @@ from full_yaml_metadata import makeExtension
 
 index_template = "templates/index.html"
 blog_template = "templates/blog.html"
-homepage_template = '<nav><a href="{path}" class="home">Home</a></nav>'
+homepage_template = '<nav><ul><li><a href="{path}" class="contrast"><strong>Home</strong></a></li></ul></nav>'
 style_link = '<link href="{path}" rel="stylesheet"></link>'
 
 index_section = {
@@ -60,7 +60,7 @@ def format_index(blog_list):
         blog_list_content = ""
         blog_list = sorted(blog_list, key=lambda x: x[0], reverse=True)
         for blog in blog_list:
-            blog_list_content += "<p><a href='blogs/{title}.html'>{title}</a></p>".format(title=blog[1])
+            blog_list_content += "<article><a href='blogs/{title}.html'>{title}</a></article>".format(title=blog[1])
 
         index_html = index_html.replace("{{body}}", blog_list_content)
 

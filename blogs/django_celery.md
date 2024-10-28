@@ -8,6 +8,7 @@ links:
   - "[[020 CS]]"
 title: Django Celery
 created: 2024-10-11
+summary:
 ---
 
 A Celery task is much like a web view, in that it should only define how to perform the action in the context of being called as a task.
