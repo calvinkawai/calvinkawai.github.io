@@ -17,7 +17,7 @@ created: 2024-10-11
 - internal vs external
 - multi-part features
 
-### Doordash suggestions for any developers starting a Django project:
+### Doordash suggestions for any developers starting a Django project
 
 - If you don’t really understand the point of apps, ignore them and stick with a single app for your backend. You can still organize a growing codebase without using separate apps.
 - If you do want to create separate applications, you will want to be very intentional about how you define them. Be very explicit about and minimize any dependencies between different apps. (If you are planning to migrate to microservices down the line, I can imagine that “apps” might be a useful construct to define precursors to a future microservice).
