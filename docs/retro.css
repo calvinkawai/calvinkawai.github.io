@@ -82,3 +82,7 @@ td {
     text-align: left;
     vertical-align: top;
 }
+
+hr {
+    margin-top: 0rem;
+}
