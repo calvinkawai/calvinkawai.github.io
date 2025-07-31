@@ -1,29 +1,237 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /><html lang="en">
-<link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
->
-<link href="retro.css" rel="stylesheet"></link>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light dark">
-  <title>Calvin Li - Devlog</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Runbook</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #fefefe;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #2c2c2c;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+            --accent-subtle: #f0f2f5;
+            --code-bg: #f7f7f7;
+            --code-border: #e5e5e5;
+            --dot-color: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            position: relative;
+        }
+
+        /* Dotted paper background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        /* Main Layout */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 280px 1fr 240px;
+            gap: 60px;
+            padding: 40px 20px;
+        }
+
+        /* Navigation Sidebar */
+        .nav-sidebar {
+            position: sticky;
+            top: 40px;
+            height: fit-content;
+        }
+
+        .nav-sidebar h3 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 8px;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .nav-links li {
+            margin-bottom: 12px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.2s ease;
+            display: block;
+            padding: 4px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a.current {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* Home Content */
+        .home-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 80vh;
+            max-width: 600px;
+        }
+
+        .home-title {
+            font-size: 56px;
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .home-subtitle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 16px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+        }
+
+        .home-description {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .home-philosophy {
+            font-size: 18px;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--border-medium);
+            border-radius: 3px;
+        }
+
+        .home-navigation {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .nav-sidebar {
+                position: static;
+                border: 1px solid var(--border-light);
+                padding: 20px;
+                border-radius: 6px;
+                background: var(--bg-secondary);
+                order: 1;
+            }
+
+            .home-content {
+                order: 0;
+                min-height: 60vh;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 16px;
+            }
+
+            .home-title {
+                font-size: 40px;
+            }
+
+            .home-description {
+                font-size: 18px;
+            }
+
+            .home-philosophy {
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
-<body class="container" =>
-<main class="middle-centered-text container">
-<nav>
-    <ul>
-        <li><strong>C.L</strong> | Dev Log</li>
-    </ul>
-    <ul>
-        <li><a href="about.html" class="contrast"><strong>About</strong></a></li>
-        <li><a href="index.html" class="contrast"><strong>Writitng</strong></a></li>
-        <li><a href="https://gist.github.com/calvinkawai/99a8a9ab5899ba07fbdc4c06df34d192" class="contrast"><strong>Curations</strong></a></li>
-    </ul>
-</nav>
-<article><a href='blogs/Django Apps.html' class='contrast'>Django Apps</a></article><article><a href='blogs/Django Celery.html' class='contrast'>Django Celery</a></article><article><a href='blogs/Git Commands.html' class='contrast'>Git Commands</a></article><article><a href='blogs/The Pragmatic Programmer Notes.html' class='contrast'>The Pragmatic Programmer Notes</a></article><article><a href='blogs/Rest API.html' class='contrast'>Rest API</a></article>
-</main>
+<body>
+    <div class="container">
+        <!-- Navigation Sidebar -->
+        <nav class="nav-sidebar">
+            <h3>Navigation</h3>
+            <ul class="nav-links">
+                <li><a href="/index.html" class="current">Home</a></li>
+            </ul>
+            
+            <h3>Notes</h3>
+            <ul class="nav-links">
+                
+                    <li><a href="test-say-hy.html">2025-07-31 Test Say Hy</a></li>
+                
+            </ul>
+        </nav>
+
+        <!-- Home Content -->
+        <main class="home-content">
+            <h1 class="home-title">A Personal Runbook</h1>
+            <div class="home-subtitle">A Developer's Learning Journal</div>
+            
+            <p class="home-description">
+                This is my personal collection of development notes, daily learnings, and reading reflections. 
+                A living document where I capture solutions, insights, and knowledge as I encounter them.
+            </p>
+
+            <div class="home-philosophy">
+                "The best time to document something is right after you figure it out, 
+                when the struggle is fresh but the solution is clear."
+            </div>
+
+            <div class="home-navigation">
+                Navigate using the sidebar to explore<br>
+            </div>
+        </main>
+    </div>
 </body>
+</html>

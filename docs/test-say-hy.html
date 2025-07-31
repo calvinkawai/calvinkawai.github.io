@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Say Hy</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #fefefe;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #2c2c2c;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border-light: #e8e8e8;
+            --border-medium: #d0d0d0;
+            --accent-subtle: #f0f2f5;
+            --code-bg: #f7f7f7;
+            --code-border: #e5e5e5;
+            --dot-color: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            position: relative;
+        }
+
+        /* Dotted paper background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        /* Main Layout */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 280px 1fr 240px;
+            gap: 60px;
+            padding: 40px 20px;
+        }
+
+        /* Navigation Sidebar */
+        .nav-sidebar {
+            position: sticky;
+            top: 40px;
+            height: fit-content;
+        }
+
+        .nav-sidebar h3 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 8px;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .nav-links li {
+            margin-bottom: 12px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.2s ease;
+            display: block;
+            padding: 4px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a.current {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            min-height: 100vh;
+        }
+
+        .article-header {
+            margin-bottom: 60px;
+            border-bottom: 2px solid var(--border-medium);
+            padding-bottom: 40px;
+        }
+
+        .article-title {
+            font-size: 48px;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .article-meta {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Table of Contents Sidebar */
+        .toc-sidebar {
+            position: sticky;
+            top: 40px;
+            height: fit-content;
+        }
+
+        .toc-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 8px;
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-list li {
+            margin-bottom: 8px;
+        }
+
+        .toc-list a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-family: 'JetBrains Mono', monospace;
+            transition: color 0.2s ease;
+            display: block;
+            padding: 2px 0;
+        }
+
+        .toc-list a:hover,
+        .toc-list a.active {
+            color: var(--text-primary);
+        }
+
+        .toc-list .toc-h3 {
+            padding-left: 16px;
+            font-size: 13px;
+        }
+
+        /* Typography */
+        .content h1,
+        .content h2,
+        .content h3 {
+            font-family: 'Crimson Text', serif;
+            margin: 40px 0 20px 0;
+            color: var(--text-primary);
+        }
+
+        .content h1 {
+            font-size: 36px;
+            font-weight: 600;
+        }
+
+        .content h2 {
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .content h3 {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .content p {
+            margin-bottom: 24px;
+            font-size: 18px;
+        }
+
+        .content ul,
+        .content ol {
+            margin: 24px 0;
+            padding-left: 32px;
+        }
+
+        .content li {
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        /* Code Styling */
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 3px;
+            border: 1px solid var(--code-border);
+            color: var(--text-primary);
+        }
+
+        pre {
+            background: var(--code-bg);
+            border: 1px solid var(--code-border);
+            border-radius: 6px;
+            padding: 24px;
+            margin: 32px 0;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        blockquote {
+            font-size: 18px;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--border-medium);
+            border-radius: 3px;
+        }
+
+        /* Subtle syntax highlighting */
+        .keyword {
+            color: #5a5a5a;
+            font-weight: 500;
+        }
+
+        .string {
+            color: #666666;
+        }
+
+        .comment {
+            color: #999999;
+            font-style: italic;
+        }
+
+        .function {
+            color: #4a4a4a;
+        }
+
+        .number {
+            color: #555555;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .nav-sidebar,
+            .toc-sidebar {
+                position: static;
+                border: 1px solid var(--border-light);
+                padding: 20px;
+                border-radius: 6px;
+                background: var(--bg-secondary);
+            }
+
+            .toc-sidebar {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 16px;
+            }
+
+            .article-title {
+                font-size: 32px;
+            }
+
+            .content h1 {
+                font-size: 28px;
+            }
+
+            .content h2 {
+                font-size: 24px;
+            }
+
+            .content p,
+            .content li {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Navigation Sidebar -->
+        <nav class="nav-sidebar">
+            <h3>Navigation</h3>
+            <ul class="nav-links">
+                <li><a href="/index.html">Home</a></li>
+            </ul>
+
+            <h3>Notes</h3>
+            <ul class="nav-links">
+                
+                <li><a href="/test-say-hy.html">2025-07-31 Test Say Hy</a></li>
+                
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="article-header">
+                <h1 class="article-title">Test Say Hy</h1>
+                <div class="article-meta">Updated on 2025-07-31</div>
+            </header>
+            <div class="content">
+                <h1>H1</h1>
+<h2>H2</h2>
+<h3>H3</h3>
+<h4>H4</h4>
+<h5>H5</h5>
+<h6>H6</h6>
+<p>Alternatively, for H1 and H2, an underline-ish style:</p>
+<h1>Alt-H1</h1>
+<h2>Alt-H2</h2>
+<p>Emphasis, aka italics, with <em>asterisks</em> or <em>underscores</em>.</p>
+<p>Strong emphasis, aka bold, with <strong>asterisks</strong> or <strong>underscores</strong>.</p>
+<p>Combined emphasis with <strong>asterisks and <em>underscores</em></strong>.</p>
+<p>Strikethrough uses two tildes. ~~Scratch this.~~</p>
+<ol>
+<li>First ordered list item</li>
+<li>Another item
+⋅⋅⋅⋅* Unordered sub-list. </li>
+<li>Actual numbers don't matter, just that it's a number
+⋅⋅⋅⋅1. Ordered sub-list</li>
+<li>And another item.</li>
+</ol>
+<p>⋅⋅⋅You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).</p>
+<p>⋅⋅⋅To have a line break without a paragraph, you will need to use two trailing spaces.⋅⋅
+⋅⋅⋅Note that this line is separate, but within the same paragraph.⋅⋅
+⋅⋅⋅(This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)</p>
+<ul>
+<li>Unordered list can use asterisks</li>
+<li>Or minuses</li>
+<li>Or pluses</li>
+</ul>
+<p><a href="https://www.google.com">I'm an inline-style link</a></p>
+<p><a href="https://www.google.com" title="Google's Homepage">I'm an inline-style link with title</a></p>
+<p><a href="https://www.mozilla.org">I'm a reference-style link</a></p>
+<p><a href="../blob/master/LICENSE">I'm a relative reference to a repository file</a></p>
+<p><a href="http://slashdot.org">You can use numbers for reference-style link definitions</a></p>
+<p>Or leave it empty and use the <a href="http://www.reddit.com">link text itself</a>.</p>
+<p>URLs and URLs in angle brackets will automatically get turned into links. 
+http://www.example.com or <a href="http://www.example.com">http://www.example.com</a> and sometimes 
+example.com (but not on Github, for example).</p>
+<p>Some text to show that the reference links can follow later.</p>
+<p>Inline <code>code</code> has <code>back-ticks around</code> it.</p>
+<pre><code class="language-javascript">var s = &quot;JavaScript syntax highlighting&quot;;
+alert(s);
+</code></pre>
+<pre><code class="language-python">s = &quot;Python syntax highlighting&quot;
+print s
+</code></pre>
+<pre><code>No language indicated, so no syntax highlighting. 
+But let's throw in a &lt;b&gt;tag&lt;/b&gt;.
+</code></pre>
+<blockquote>
+<p>Blockquotes are very handy in email to emulate reply text.
+This line is part of the same quote.</p>
+</blockquote>
+<p>Quote break.</p>
+<blockquote>
+<p>This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can <em>put</em> <strong>Markdown</strong> into a blockquote. </p>
+</blockquote>
+<p>Three or more...</p>
+<hr />
+<p>Hyphens</p>
+<hr />
+<p>Asterisks</p>
+<hr />
+<p>Underscores</p>
+            </div>
+        </main>
+
+        <!-- Table of Contents Sidebar -->
+        <aside class="toc-sidebar">
+            <h3 class="toc-title">Contents</h3>
+            <ul class="toc-list" id="toc-list">
+                <!-- TOC will be generated by JavaScript -->
+            </ul>
+        </aside>
+    </div>
+
+    <script>
+        // Auto-generate table of contents
+        function generateTOC() {
+            const tocList = document.getElementById('toc-list');
+            const headings = document.querySelectorAll('.content h2, .content h3');
+
+            headings.forEach(heading => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+
+                a.href = `#${heading.id}`;
+                a.textContent = heading.textContent;
+                a.className = heading.tagName === 'H3' ? 'toc-h3' : '';
+
+                li.appendChild(a);
+                tocList.appendChild(li);
+            });
+        }
+
+        // Highlight active section in TOC
+        function highlightActiveTOC() {
+            const headings = document.querySelectorAll('.content h2, .content h3');
+            const tocLinks = document.querySelectorAll('.toc-list a');
+
+            let activeHeading = null;
+            const scrollPosition = window.scrollY + 100; // Offset for better UX
+
+            headings.forEach(heading => {
+                if (heading.offsetTop <= scrollPosition) {
+                    activeHeading = heading;
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (activeHeading && link.getAttribute('href') === `#${activeHeading.id}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Initialize TOC and scroll highlighting
+        document.addEventListener('DOMContentLoaded', () => {
+            generateTOC();
+            highlightActiveTOC();
+
+            window.addEventListener('scroll', highlightActiveTOC);
+
+            // Smooth scroll for TOC links
+            document.querySelectorAll('.toc-list a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = document.querySelector(link.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

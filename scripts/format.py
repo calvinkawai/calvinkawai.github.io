@@ -1,30 +1,12 @@
 #!/usr/bin/env python3
-import os
-import glob
+from jinja2 import Environment, FileSystemLoader
 import markdown
 import yaml
-import datetime
-from full_yaml_metadata import makeExtension
+from datetime import datetime
+import os
+from pathlib import Path
 
-index_template = "templates/index.html"
-blog_template = "templates/blog.html"
-homepage_template = '<nav><ul><li><a href="{path}" class="contrast"><strong>Home</strong></a></li></ul></nav>'
-style_link = '<link href="{path}" rel="stylesheet"></link>'
-
-index_section = {
-    "about": "index/about.md",
-    "passionate": "index/passionate.md",
-    "working_with": "index/working_with.md",
-    "thinking_about": "index/thinking_about.md",
-}
-awesome_md = "index/003 Awesome.md"
-blog_dir = "blogs/"
-seeds_dir = "seed/"
-
-extension = "html"
-
-makeExtension()
-
+enviroment = Environment(loader=FileSystemLoader('templates'))
 
 def md_parser():
     md = markdown.Markdown(
@@ -37,83 +19,89 @@ def md_parser():
     )
     return md
 
+def get_template(template_name):
+    return enviroment.get_template(template_name)
 
-md = md_parser()
+class NoteLinkDTO:
 
+    def __init__(self, href, timestamp, title, file_path):
+        self.text = f"{timestamp} {self._parse_title(title)}"
+        self.file_path = file_path
+        self.href = f"{title}.html"
+        self.title = self._parse_title(title)
+        self.timestamp = timestamp
 
-def get_template(template_file):
-    with open(template_file, "r") as index_fp:
-        template = index_fp.read()
-    return template
+    def _parse_title(self, title):
+        # Remove file extension and replace hyphens/underscores with spaces
+        # Capitalize first letter of each word
+        title_clean = title.replace('-', ' ').replace('_', ' ')
+        return title_clean.title()
 
+def get_file_modification_date(file_path):
+    """Get file modification date in yyyy-mm-dd format"""
+    mtime = os.path.getmtime(file_path)
+    return datetime.fromtimestamp(mtime).strftime("%Y-%m-%d")
 
-def output_path(pattern):
-    return "docs" + "/" + pattern + "." + extension
-
-
-def format_index(blog_list):
-    index_html = get_template(index_template)
-
-    with open(output_path("index"), "w") as out:
-
-        # blog section list
-        blog_list_content = ""
-        blog_list = sorted(blog_list, key=lambda x: x[0], reverse=True)
-        for blog in blog_list:
-            blog_list_content += "<article><a href='blogs/{title}.html' class='contrast'>{title}</a></article>".format(
-                title=blog[1]
+def build_nav_links():
+    """Read all markdown files from blogs/ folder and construct NoteLinkDTO objects"""
+    blogs_dir = Path('blogs')
+    note_links = []
+    
+    # Check if blogs directory exists
+    if not blogs_dir.exists():
+        print(f"Warning: {blogs_dir} directory does not exist")
+        return note_links
+    
+    # Iterate through all files in blogs directory
+    for file_path in blogs_dir.iterdir():
+        # Skip directories and non-markdown files
+        if file_path.is_file() and file_path.suffix.lower() == '.md':
+            # Get filename without extension
+            title = file_path.stem
+            
+            # Get modification date
+            timestamp = get_file_modification_date(file_path)
+            
+            # Create NoteLinkDTO object
+            note_link = NoteLinkDTO(
+                href=f"{title}.html",
+                title=title,
+                timestamp=timestamp,
+                file_path=str(file_path)
             )
+            
+            note_links.append(note_link)
+    
+    # Sort by modification date (newest first)
+    note_links.sort(key=lambda x: x.text, reverse=True)
+    
+    return note_links
 
-        index_html = index_html.replace("{{body}}", blog_list_content)
+def render_index(note_links):
+    template = get_template("index.html")
+    with open("docs/index.html", "w") as fp:
+        fp.write(template.render(notes=note_links))
 
-        out.write(index_html)
+def render_blog(note_link, note_links):
+    template = get_template("base.html")
+    with open(note_link.file_path, "r") as fp:
+        content = fp.read()
+        content = md_parser().convert(content)
+    with open(f"docs/{note_link.href}", "w") as fp:
+        fp.write(template.render({
+            "content": content,
+            "notes": note_links,
+            "title": note_link.title,
+            "updated_on": note_link.timestamp,
+            "note_link": note_link
+        }))
 
-    index_html = get_template(index_template)
-    with open(output_path("about"), "w") as out:
-        # about me
-        about_me_md = index_section["about"]
-        with open(about_me_md, "r") as section_fp:
-            raw = section_fp.read()
-            content = md.convert(raw)
-            index_html = index_html.replace("{{body}}", content)
-
-        out.write(index_html)
-
-
-# def format_awesome(template):
-#     with open(output_path("awesome"), "w") as out:
-#         with open(awesome_md, "r") as input:
-#             raw = input.read()
-#             content = md.convert(raw)
-#             template = template.replace("{{title}}", "awesome")
-#             template = template.replace("{{body}}", content)
-#             template = template.replace("{{home}}", homepage_template.format(path="index.html"))
-#             template = template.replace("{{style_link}}", style_link.format(path="retro.css"))
-#         out.write(template)
-
-
-def format_blog(template, blog_file):
-    with open(blog_file, "r") as input:
-        raw = input.read()
-        content = md.convert(raw)
-        template = template.replace("{{title}}", md.Meta.get("title"))
-        template = template.replace("{{body}}", content)
-        template = template.replace("{{home}}", homepage_template.format(path="../index.html"))
-        template = template.replace("{{style_link}}", style_link.format(path="../retro.css"))
-        with open(output_path(f"blogs/{md.Meta.get("title")}"), "w") as out:
-            out.write(template)
-    return md.Meta.get("created"), md.Meta.get("title")
+def render_all_blogs(note_links):
+    for note_link in note_links:
+        render_blog(note_link, note_links)
 
 
 if __name__ == "__main__":
-    if not os.path.exists("docs"):
-        os.mkdir("docs")
-
-    blog_template = get_template(blog_template)
-
-    blog_list = []
-    for f in glob.iglob("blogs/*.md"):
-        blog_list.append(format_blog(blog_template, f))
-
-    format_index(blog_list)
-    # format_awesome(blog_template)
+    nav_links = build_nav_links()
+    render_index(nav_links)
+    render_all_blogs(nav_links)
