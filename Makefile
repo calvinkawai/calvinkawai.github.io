@@ -1,3 +1,5 @@
+PHONY: clean install build start
+
 SHELL:=/bin/zsh
 VIRTUAL_ENV=.venv
 PYTHON=${VIRTUAL_ENV}/bin/python
@@ -19,3 +21,7 @@ install: venv requirements.txt ##@main >> update requirements.txt inside the vir
 
 build:
 	$(PYTHON) scripts/format.py
+
+start:
+	cd docs
+	$(PYTHON) -m http.server
